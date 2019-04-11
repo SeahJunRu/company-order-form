@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import TableForm from './Table'
-import { InputGroup, InputGroupAddon, InputGroupText, Input , Button , Form, FormGroup, Label , FormText , Table } from 'reactstrap'
+import './main.css'
+import { Input, Button, Form, FormGroup, Label } from 'reactstrap'
 
 //class App extends Component {
 //  render() {
@@ -13,7 +14,6 @@ import { InputGroup, InputGroupAddon, InputGroupText, Input , Button , Form, For
 //}
 
 //export default App
-
 class Submission extends React.Component {
   constructor() {
 	super();
@@ -33,16 +33,21 @@ class Submission extends React.Component {
   
   render() {
     return (
-      <Form onSubmit={this.handleSubmit}>
-        <FormGroup>
-          <Label for="companyName">Company Name</Label>
-          <Input type="textarea" name="company" id="companyName" placeholder="Enter Company Name" />
-        </FormGroup>
-        <FormGroup>
-			<TableForm />
-        </FormGroup>
-        <Button type="submit">Submit</Button>
-      </Form>
+      <div className='content-container'>  
+        <h1>Machine Scheduling Optimizer</h1>
+        <div className='form-container'>
+          <Form onSubmit={this.handleSubmit}>
+            <FormGroup>
+              <Label for="companyName">Company Name</Label>
+              <Input type="textarea" name="company" id="companyName" placeholder="Enter Company Name" />
+            </FormGroup>
+            <FormGroup>
+    			    <TableForm />
+            </FormGroup>
+            <Button type="submit">Submit</Button>
+          </Form>
+        </div>
+      </div>
     );
   }
 }
