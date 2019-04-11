@@ -1,7 +1,6 @@
 import React from 'react'
 import TableForm from './Table'
 import { InputGroup, InputGroupAddon, InputGroupText, Input , Button , Form, FormGroup, Label , FormText , Table } from 'reactstrap'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './main.css'
 
 //class App extends Component {
@@ -18,7 +17,9 @@ import './main.css'
 class Submission extends React.Component {
   constructor() {
 	super();
+	this.state = {showResult: false}
     this.handleSubmit = this.handleSubmit.bind(this);
+	this.showHome = this.showHome.bind(this);
   }
 
   handleSubmit(event) {
@@ -30,11 +31,32 @@ class Submission extends React.Component {
 		method: 'POST',
 		body: data,
 	});
-	
-  }	
+	this.setState({ showResult: true });
+  }
+  
+  showHome() {
+    this.setState({ showResult: false });
+  }
   
   render() {
-    return (
+    const showResult = this.state.showResult;
+	if (showResult === true) {
+      return (
+        <div className='content-container'>  
+          <h1>Machine Scheduling Optimizer</h1>
+          <div className='form-container'>
+            <Form>
+              <FormGroup>
+    	        <h2>Result</h2>
+				<Button color="primary" size="sm" onClick={this.showHome}>Back</Button>
+              </FormGroup>  
+            </Form>
+          </div>
+        </div>
+      )	  
+    };
+	
+	return (
       <div className='content-container'>  
         <h1>Machine Scheduling Optimizer</h1>
         <div className='form-container'>
@@ -44,7 +66,7 @@ class Submission extends React.Component {
               <Input type="textarea" name="company" id="companyName" placeholder="Enter Company Name" />
             </FormGroup>
             <FormGroup>
-    			    <TableForm />
+    	      <TableForm />
             </FormGroup>
             <Button type="submit">Submit</Button>
           </Form>
