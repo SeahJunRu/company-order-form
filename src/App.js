@@ -23,6 +23,8 @@ class Submission extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const data = new FormData(event.target);
+	const json = Object.assign(...Array.from(data, ([x,y]) => ({[x]:y})));
+	alert(JSON.stringify(json));
 	fetch('/api/form-submit-url', {
 		method: 'POST',
 		body: data,
