@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import TableForm from './Table'
 import { InputGroup, InputGroupAddon, InputGroupText, Input , Button , Form, FormGroup, Label , FormText , Table } from 'reactstrap'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+
 
 //class App extends Component {
 //  render() {
@@ -24,11 +26,13 @@ class Submission extends React.Component {
     event.preventDefault();
     const data = new FormData(event.target);
 	const json = Object.assign(...Array.from(data, ([x,y]) => ({[x]:y})));
+	this.props.history.push('/TableForm');
 	alert(JSON.stringify(json));
 	fetch('/api/form-submit-url', {
 		method: 'POST',
 		body: data,
 	});
+	
   }	
   
   render() {
