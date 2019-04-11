@@ -1,48 +1,95 @@
 import React, { Component } from 'react'
+import { Table } from 'reactstrap'
 
 const TableHeader = () => {
   return (
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Job</th>
-      </tr>
-    </thead>
+	<thead>
+	  <tr>
+		<th></th>
+		<th>Cost ($/unit)</th>
+		<th>Price($/unit)</th>
+		<th>Order Received (unit)</th>
+	  </tr>
+	</thead>
   )
 }
 
 const TableBody = () => {
   return (
-    <tbody>
-      <tr>
-        <td>Charlie</td>
-        <td>Janitor</td>
-      </tr>
-      <tr>
-        <td>Mac</td>
-        <td>Bouncer</td>
-      </tr>
-      <tr>
-        <td>Dee</td>
-        <td>Aspiring actress</td>
-      </tr>
-      <tr>
-        <td>Dennis</td>
-        <td>Bartender</td>
-      </tr>
+	<tbody>
+	  <tr>
+		<th scope="row">Component A</th>
+		<td>
+		  <input type="text" name="A1" />
+		</td>
+		<td>
+		  <input type="text" name="A2" />
+		</td>
+		<td>
+		  <input type="text" name="A3" />
+		</td>
+	  </tr>
+	  <tr>
+		<th scope="row">Component B</th>
+		<td>
+		  <input type="text" name="B1" />
+		</td>
+		<td>
+		  <input type="text" name="B2" />
+		</td>
+		<td>
+		  <input type="text" name="B3" />
+		</td>
+	  </tr>
+	  <tr>
+		<th scope="row">Component C</th>
+		<td>
+		  <input type="text" name="C1" />
+		</td>
+		<td>
+		  <input type="text" name="C2" />
+		</td>
+		<td>
+		  <input type="text" name="C3" />
+		</td>
+	  </tr>
+	  <tr>
+		<th scope="row">Component D</th>
+		<td>
+		  <input type="text" name="D1" />
+		</td>
+		<td>
+		  <input type="text" name="D2" />
+		</td>
+		<td>
+		  <input type="text" name="D3" />
+		</td>
+	  </tr>
+	  <tr>
+		<th scope="row">Component E</th>
+		<td>
+		  <input type="text" name="E1" />
+		</td>
+		<td>
+		  <input type="text" name="E2" />
+		</td>
+		<td>
+		  <input type="text" name="E3" />
+		</td>
+	  </tr>
     </tbody>
   )
 }
 
-class Table extends Component {
+class TableForm extends Component {
   render() {
     return (
-      <table>
+      <Table bordered>
         <TableHeader />
         <TableBody />
-      </table>
+      </Table>
     )
   }
 }
 
-export default Table
+export default TableForm
