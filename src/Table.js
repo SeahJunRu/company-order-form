@@ -7,7 +7,7 @@ const TableHeader = () => {
 	  <tr>
 		<th></th>
 		<th>Cost ($/unit)</th>
-		<th>Price($/unit)</th>
+		<th>Price ($/unit)</th>
 		<th>Order Received (unit)</th>
 	  </tr>
 	</thead>
