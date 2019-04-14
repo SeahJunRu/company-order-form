@@ -1,6 +1,6 @@
 import React from 'react'
 import TableForm from './Table'
-import { Input, Button, Form, FormGroup, Label , Spinner } from 'reactstrap'
+import { Input, Button, ButtonGroup , Form, FormGroup, Label , Spinner } from 'reactstrap'
 import './main.css'
 import axios from 'axios'
 
@@ -18,7 +18,8 @@ class Submission extends React.Component {
       errors: null
     }
     this.handleSubmit = this.handleSubmit.bind(this);
-	  this.showHome = this.showHome.bind(this);
+	this.showHome = this.showHome.bind(this);
+	this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
   }
 
   handleSubmit(event) {
@@ -26,7 +27,7 @@ class Submission extends React.Component {
     const data = new FormData(event.target);
 	  const json = Object.assign(...Array.from(data, ([x,y]) => ({[x]:y})));
 	  const inputData = [{
-        "quickScan": json.quickScan,
+        "quickScan": this.state.rSelected,
         "components": [{
 		  "name": "C1", 
 		  "cost": json.A1,
@@ -95,6 +96,10 @@ class Submission extends React.Component {
     });
   }
   
+  onRadioBtnClick(rSelected) {
+    this.setState({ rSelected });
+  }
+  
   render() {
     const { schedule, maxProfits, numOfComponents, isLoading, showResult } = this.state;  
     if (showResult === true) {
@@ -147,8 +152,11 @@ class Submission extends React.Component {
               <Label for="companyName">Company Name</Label>
               <Input type="textarea" name="company" id="companyName" placeholder="Enter Company Name" />
               <div className='checkbox-container'>
-                <Input type="checkbox" name="quickScan" id="quickScan" />
-                <Label for="quickScan">Quick Scan</Label>
+			    <h5>Quick Scan</h5>
+                <ButtonGroup>
+                  <Button color="primary" onClick={() => this.onRadioBtnClick(true)} active={this.state.rSelected === true}>On</Button>
+                  <Button color="primary" onClick={() => this.onRadioBtnClick(false)} active={this.state.rSelected === false}>Off</Button>
+                </ButtonGroup>
               </div>
             </FormGroup>
             <FormGroup>
