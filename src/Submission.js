@@ -1,46 +1,58 @@
 import React from 'react'
 import TableForm from './Table'
-import { InputGroup, InputGroupAddon, InputGroupText, Input , Button , Form, FormGroup, Label , FormText , Table } from 'reactstrap'
+import { Input, Button, Form, FormGroup, Label } from 'reactstrap'
 import './main.css'
+import axios from 'axios'
 
-//class App extends Component {
-//  render() {
-//    return (
-//      <div className="container">
-//         <Table />
-//      </div>
-//    )
-//  }
-//}
 
 //export default App
 class Submission extends React.Component {
   constructor() {
-	super();
-	this.state = {showResult: false}
+  	super();
+  	this.state = {
+      showResult: false,
+      schedule: [],
+      maxProfit: 0,
+      numOfComponents:[],
+      isLoading: true,
+      errors: null
+    }
     this.handleSubmit = this.handleSubmit.bind(this);
-	this.showHome = this.showHome.bind(this);
+	  this.showHome = this.showHome.bind(this);
   }
 
   handleSubmit(event) {
     event.preventDefault();
     const data = new FormData(event.target);
-	const json = Object.assign(...Array.from(data, ([x,y]) => ({[x]:y})));
-	alert(JSON.stringify(json));
-	fetch('/api/form-submit-url', {
-		method: 'POST',
-		body: data,
-	});
-	this.setState({ showResult: true });
+	  const json = Object.assign(...Array.from(data, ([x,y]) => ({[x]:y})));
+	  alert(JSON.stringify(json));
+
+    axios.post(`https://a625a135-4311-42be-bdaa-2ab1ba840d67.mock.pstmn.io/getSchedule`, { json })
+      .then(response => {
+        console.log(response);
+        console.log(response.data);
+        this.setState({
+          schedule: response.data.schedule,
+          maxProfits: response.data.maxProfits,
+          numOfComponents: response.data.numOfComponents,
+          isLoading: false,
+          showResult: true
+        });
+      })
+      // If we catch any errors connecting, let's update accordingly
+      .catch(error => this.setState({ error, isLoading: false, showResult: false }));
+    
   }
   
   showHome() {
-    this.setState({ showResult: false });
+    this.setState({ 
+      showResult: false 
+    });
   }
   
   render() {
-    const showResult = this.state.showResult;
-	if (showResult === true) {
+    const { schedule, maxProfits, numOfComponents, isLoading, showResult } = this.state;  
+    if (showResult === true) {
       return (
         <div className='content-container'>  
           <h1>Machine Scheduling Optimizer</h1>
@@ -48,6 +60,22 @@ class Submission extends React.Component {
             <Form>
               <FormGroup>
     	        <h2>Result</h2>
+              <React.Fragment>
+              <div>
+                {!isLoading ? (
+                  // <h2> Maximum profit is {maxProfits} </h2> 
+                  // display schedule
+                  numOfComponents.map(component => {
+                    const { name, number } = component;
+                    return (
+                      <h3>Number of {name} : {number}</h3>
+                    );
+                  })
+                ) : (
+                  <p>Loading...</p>
+                )}
+              </div>
+              </React.Fragment>
 				<Button color="primary" size="sm" onClick={this.showHome}>Back</Button>
               </FormGroup>  
             </Form>
@@ -56,7 +84,7 @@ class Submission extends React.Component {
       )	  
     };
 	
-	return (
+	  return (
       <div className='content-container'>  
         <h1>Machine Scheduling Optimizer</h1>
         <div className='form-container'>
