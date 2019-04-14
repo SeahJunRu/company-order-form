@@ -25,6 +25,25 @@ class Submission extends React.Component {
     event.preventDefault();
     const data = new FormData(event.target);
 	  const json = Object.assign(...Array.from(data, ([x,y]) => ({[x]:y})));
+	  const inputData = [{
+        "quickScan": json.quickScan,
+        "components": [{
+        	"name": "A", 
+          "desiredUnit": json.A3
+        }, {
+        	"name": "B",
+          "desiredUnit": json.B3
+        }, {
+        	"name": "C",
+          "desiredUnit": json.C3
+        }, {
+        	"name": "D",
+          "desiredUnit": json.D3
+        }, {
+        	"name": "E",
+          "desiredUnit": json.E3
+        } ]
+      }];
 	  alert(JSON.stringify(json));
     this.setState({ showResult: true })
 	  
