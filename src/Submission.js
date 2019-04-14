@@ -1,6 +1,6 @@
 import React from 'react'
 import TableForm from './Table'
-import { Input, Button, Form, FormGroup, Label } from 'reactstrap'
+import { Input, Button, Form, FormGroup, Label , Spinner } from 'reactstrap'
 import './main.css'
 import axios from 'axios'
 
@@ -26,7 +26,8 @@ class Submission extends React.Component {
     const data = new FormData(event.target);
 	  const json = Object.assign(...Array.from(data, ([x,y]) => ({[x]:y})));
 	  alert(JSON.stringify(json));
-
+    this.setState({ showResult: true })
+	  
     axios.post(`https://a625a135-4311-42be-bdaa-2ab1ba840d67.mock.pstmn.io/getSchedule`, { json })
       .then(response => {
         console.log(response);
@@ -72,7 +73,16 @@ class Submission extends React.Component {
                     );
                   })
                 ) : (
-                  <p>Loading...</p>
+				  <div>
+                    <Spinner type="grow" color="primary" />
+                    <Spinner type="grow" color="secondary" />
+                    <Spinner type="grow" color="success" />
+                    <Spinner type="grow" color="danger" />
+                    <Spinner type="grow" color="warning" />
+                    <Spinner type="grow" color="info" />
+                    <Spinner type="grow" color="light" />
+                    <Spinner type="grow" color="dark" />
+                  </div>
                 )}
               </div>
               </React.Fragment>
