@@ -26,7 +26,7 @@ class Submission extends React.Component {
     event.preventDefault();
     const data = new FormData(event.target);
 	  const json = Object.assign(...Array.from(data, ([x,y]) => ({[x]:y})));
-	  const inputData = [{
+	  const inputData = {
       "quickScan": this.state.rSelected,
       "components": [{
   		  "name": "C1", 
@@ -69,13 +69,13 @@ class Submission extends React.Component {
 	      "price": json.H2,
         "desiredUnit": parseInt(json.H3,10)
       }]
-    }];
+    };
 	  alert(JSON.stringify(inputData));
     this.setState({ showResult: true })
 	  
     fetch('http://localhost:8080/solve', {
       method: 'post',
-      body: inputData,
+      body: JSON.stringify(inputData),
       mode: 'no-cors'
 
     }).then(function(response) {
