@@ -92,6 +92,10 @@ class Submission extends React.Component {
             <FormGroup>
               <Label for="companyName">Company Name</Label>
               <Input type="textarea" name="company" id="companyName" placeholder="Enter Company Name" />
+              <div className='checkbox-container'>
+                <Input type="checkbox" name="quickScan" id="quickScan" />
+                <Label for="quickScan">Quick Scan</Label>
+              </div>
             </FormGroup>
             <FormGroup>
     	      <TableForm />
