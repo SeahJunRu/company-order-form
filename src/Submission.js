@@ -28,23 +28,48 @@ class Submission extends React.Component {
 	  const inputData = [{
         "quickScan": json.quickScan,
         "components": [{
-        	"name": "A", 
-          "desiredUnit": json.A3
+		  "name": "C1", 
+		  "cost": json.A1,
+		  "price": json.A2,
+		  "desiredUnit": json.A3,
         }, {
-        	"name": "B",
+          "name": "C2",
+		  "cost": json.B1,
+		  "price": json.B2,
           "desiredUnit": json.B3
         }, {
-        	"name": "C",
+          "name": "C3",
+		  "cost": json.C1,
+		  "price": json.C2,
           "desiredUnit": json.C3
         }, {
-        	"name": "D",
+          "name": "C4",
+		  "cost": json.D1,
+		  "price": json.D2,
           "desiredUnit": json.D3
         }, {
-        	"name": "E",
+          "name": "C5",
+		  "cost": json.E1,
+		  "price": json.E2,
           "desiredUnit": json.E3
+        }, {
+          "name": "C6",
+		  "cost": json.F1,
+		  "price": json.F2,
+          "desiredUnit": json.F3
+        }, {
+          "name": "C7",
+		  "cost": json.G1,
+		  "price": json.G2,
+          "desiredUnit": json.G3
+        }, {
+          "name": "C8",
+		  "cost": json.H1,
+		  "price": json.H2,
+          "desiredUnit": json.H3
         } ]
       }];
-	  alert(JSON.stringify(json));
+	  alert(JSON.stringify(inputData));
     this.setState({ showResult: true })
 	  
     axios.post(`https://a625a135-4311-42be-bdaa-2ab1ba840d67.mock.pstmn.io/getSchedule`, { json })

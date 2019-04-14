@@ -77,6 +77,42 @@ const TableBody = () => {
 		  <input type="text" name="E3" />
 		</td>
 	  </tr>
+	  <tr>
+		<th scope="row">Component F</th>
+		<td>
+		  <input type="text" name="F1" />
+		</td>
+		<td>
+		  <input type="text" name="F2" />
+		</td>
+		<td>
+		  <input type="text" name="F3" />
+		</td>
+	  </tr>
+	  <tr>
+		<th scope="row">Component G</th>
+		<td>
+		  <input type="text" name="G1" />
+		</td>
+		<td>
+		  <input type="text" name="G2" />
+		</td>
+		<td>
+		  <input type="text" name="G3" />
+		</td>
+	  </tr>
+	  <tr>
+		<th scope="row">Component H</th>
+		<td>
+		  <input type="text" name="H1" />
+		</td>
+		<td>
+		  <input type="text" name="H2" />
+		</td>
+		<td>
+		  <input type="text" name="H3" />
+		</td>
+	  </tr>
     </tbody>
   )
 }
