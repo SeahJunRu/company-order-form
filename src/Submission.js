@@ -30,49 +30,64 @@ class Submission extends React.Component {
       "quickScan": this.state.rSelected,
       "components": [{
   		  "name": "C1", 
-  		  "cost": json.A1,
-  		  "price": json.A2,
+  		  "cost": parseInt(json.A1),
+  		  "price": parseInt(json.A2),
   		  "desiredUnit": parseInt(json.A3, 10)
       }, {
         "name": "C2",
-	      "cost": json.B1,
-	      "price": json.B2,
+	      "cost": parseInt(json.B1),
+	      "price": parseInt(json.B2),
         "desiredUnit": parseInt(json.B3,10)
       }, {
         "name": "C3",
-	      "cost": json.C1,
-	      "price": json.C2,
+	      "cost": parseInt(json.C1),
+	      "price": parseInt(json.C2),
         "desiredUnit": parseInt(json.C3,10)
       }, {
         "name": "C4",
-	      "cost": json.D1,
-	      "price": json.D2,
+	      "cost": parseInt(json.D1),
+	      "price": parseInt(json.D2),
         "desiredUnit": parseInt(json.D3,10)
       }, {
         "name": "C5",
-	      "cost": json.E1,
-	      "price": json.E2,
+	      "cost": parseInt(json.E1),
+	      "price": parseInt(json.E2),
         "desiredUnit": parseInt(json.E3,10)
       }, {
         "name": "C6",
-	      "cost": json.F1,
-	      "price": json.F2,
+	      "cost": parseInt(json.F1),
+	      "price": parseInt(json.F2),
         "desiredUnit": parseInt(json.F3,10)
       }, {
         "name": "C7",
-	      "cost": json.G1,
-	      "price": json.G2,
+	      "cost": parseInt(json.G1),
+	      "price": parseInt(json.G2),
         "desiredUnit": parseInt(json.G3,10)
       }, {
         "name": "C8",
-	      "cost": json.H1,
-	      "price": json.H2,
+	      "cost": parseInt(json.H1),
+	      "price": parseInt(json.H2),
         "desiredUnit": parseInt(json.H3,10)
       }]
     };
 	  alert(JSON.stringify(inputData));
     this.setState({ showResult: true })
 	  
+    // axios.post('https://localhost:8080/solve', { json },{})
+    //   .then(response => {
+    //     console.log(response);
+    //     console.log(response.data);
+    //     this.setState({
+    //       schedule: response.data.schedule,
+    //       maxProfits: response.data.maxProfits,
+    //       numOfComponents: response.data.numOfComponents,
+    //       isLoading: false,
+    //       showResult: true
+    //     });
+    //   })
+    //   // If we catch any errors connecting, let's update accordingly
+    //   .catch(error => this.setState({ error, isLoading: false, showResult: false }));
+
     fetch('http://localhost:8080/solve', {
       method: 'post',
       body: JSON.stringify(inputData),
